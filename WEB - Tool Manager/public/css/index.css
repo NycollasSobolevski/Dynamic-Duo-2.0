@@ -145,6 +145,13 @@ main{
     animation: Appear 500ms;
     transition: all 500ms;
 }
+.conteudoOculto #cartao {
+    opacity: 0;
+}
+.conteudoOculto .Content button{
+    opacity: 0;
+
+}
 .sendReceive{
     display: flex;
     flex-direction: column;
@@ -223,7 +230,121 @@ main{
 }
 
 
+.wifi{
+    padding: 3rem;
+}
+.wifi-logo {
+    width: 250px;
+    height: 250px;
+    rotate: -45deg;
+}
+.wifi-logo span {
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    display:block;
+    width:100%;
+    height:100%;
+    font-size: large;
+    position:absolute;
+    bottom:0;
+    left:0;
+    border-color: #007bc0;
+    border-style:solid;
+    border-width:2rem 2rem 0 0 ;
+    border-radius:0 100% 0 0;
+    opacity: 0;
 
+    animation: signal 2.5s  infinite;
+    -o-animation: signal 2.5s  infinite;
+    -moz-animation: signal 2.5s  infinite;
+    -webkit-animation: signal 2.5s  infinite;
+}
+.wifi-logo span:nth-child(1) {
+    border-color: #00884a;
+    
+    animation-delay: .99s;
+    -o-animation-delay: .99s;
+    -moz-animation-delay: .99s;
+    -webkit-animation-delay: .99s;
+}    
+.wifi-logo span:nth-child(2) {
+    border-color: #18837e;
+    width: 75%;
+    height: 75%;
+    animation-delay: .66s;
+    -o-animation-delay: .66s;
+    -moz-animation-delay: .66s;
+    -webkit-animation-delay: .66s;
+}    
+.wifi-logo span:nth-child(3) {
+    border-color: #007bc0;
+    width: 50%;
+    height: 50%;
+    animation-delay: .33s;
+    -o-animation-delay: .33s;
+    -moz-animation-delay: .33s;
+    -webkit-animation-delay: .33s;
+}    
+.wifi-logo span:nth-child(4) {
+    border-color: #9e2896;
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    border-width: 1.5rem;
+    bottom: 0;
+    opacity: 1;
+    animation: none;
+    -o-animation: none;
+    -moz-animation: none;
+    -webkit-animation: none;
+}    
+
+
+
+@keyframes signal {
+    0% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.05;
+    }
+}
+@-o-keyframes signal {
+    0% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.05;
+    }
+}
+@-moz-keyframes signal {
+    0% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.05;
+    }
+}
+@-webkit-keyframes signal {
+    0% {
+        opacity: 0.05;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0.05;
+    }
+}
 
 
 
