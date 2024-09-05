@@ -25,19 +25,6 @@
         </form>
     </header>
 
-    <!-- <div class="area">
-        <ul class="circles">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-    </ul> -->
     <main id="Main">
         <div class="RegistrationArea">
             <form action="/ToolManager/pushCadastro" method="post">
@@ -76,7 +63,15 @@
         </div>
         <form class="Content formulario" action="/ToolManager/devolver" method="post">
             <div class="Content sendReceive">
-                <h2 style="display: <%=!devolverEdv ? 'flex' : 'none' %>;">Card:</h2>
+                <h2 style="display: <%=!devolverEdv ? 'flex' : 'none' %>;">Aproxime o Crachá</h2>
+                <div class="wifi">
+                    <div class="wifi-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
                 <input type="text" maxlength="6" minlength="6" id="cartao" style="display: <%=!devolverEdv ? 'flex' : 'none' %>;" <% if(devolver && !devolverEdv){ %> autofocus required <%} %>  placeholder="Aproxime o crachá" name="cartao">
                 <h2 style="display: <%=devolverEdv ? 'flex' : 'none' %>;">EDV:</h2>
                 <input type="text" maxlength="8" minlength="8" style="display: <%=devolverEdv ? 'flex' : 'none' %>;" <% if(devolverEdv){ %> autofocus required <% } %> placeholder="EDV" name="edv" >
@@ -84,9 +79,9 @@
 
             <button type="submit" class="submitButton">Enviar</button>
         </form>
-        <form action="/ToolManager/devolverPorEdv" method="post">
+        <!-- <form action="/ToolManager/devolverPorEdv" method="post">
             <button type="submit" class="submitButton">EDV</button>
-        </form>
+        </form> -->
         <form action="/ToolManager" method="get">
             <button onclick="ClearDisplay()" class="submitButton" style="background-color: #fb4b4b;">Fechar</button>
         </form>
@@ -97,16 +92,24 @@
         </div>
         <form class="Content formulario" action="/ToolManager/retirar" method="post">
             <div class="Content sendReceive">
-                <h2 style="display: <%=!retirarEdv ? 'flex' : 'none' %>;">Card:</h2>
+                <h2 style="display: <%=!retirarEdv ? 'flex' : 'none' %>;">Aproxime o Crachá</h2>
+                <div class="wifi">
+                    <div class="wifi-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
                 <input type="text" maxlength="6" minlength="6" id="cartao" style="display: <%=!retirarEdv ? 'flex' : 'none' %>;" <% if(!retirarEdv && retirar){ %> autofocus required <%} %>  placeholder="Aproxime o crachá" name="cartao" >
                 <h2 style="display: <%=retirarEdv ? 'flex' : 'none' %>;">EDV:</h2>
                 <input type="text" maxlength="8" minlength="8" style="display: <%=retirarEdv ? 'flex' : 'none' %>;" <% if(retirarEdv){ %> autofocus required <% } %> placeholder="EDV" name="edv" >
             </div>
             <button type="submit" class="submitButton">Enviar</button>
         </form>
-        <form action="/ToolManager/retirarPorEdv" method="post">
+        <!-- <form action="/ToolManager/retirarPorEdv" method="post">
             <button type="submit" class="submitButton">EDV</button>
-        </form>
+        </form> -->
         <form action="/ToolManager" method="get">
             <button onclick="ClearDisplay()" class="submitButton" style="background-color: #fb4b4b;">Fechar</button>
         </form>
@@ -118,16 +121,24 @@
         </div>
         <form class="Content formulario" action="/ToolManager/Cadastro" method="post">
             <div class="Content sendReceive">
-                <h2 style="display: <%=!cadastrarEdv ? 'flex' : 'none' %>;">Card:</h2>
+                <h2 style="display: <%=!cadastrarEdv ? 'flex' : 'none' %>;">Aproxime o Crachá</h2>
+                <div class="wifi">
+                    <div class="wifi-logo">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
                 <input type="text" maxlength="6" minlength="6" id="cartao" style="display: <%=!cadastrarEdv ? 'flex' : 'none' %>;" <% if(cadastrar && !cadastrarEdv){ %> autofocus required <%} %>  placeholder="Aproxime o crachá" name="cartao">
                 <h2 style="display: <%=cadastrarEdv ? 'flex' : 'none' %>;">EDV:</h2>
                 <input type="text" maxlength="8" minlength="8" style="display: <%=cadastrarEdv ? 'flex' : 'none' %>;" <% if(cadastrarEdv){ %> autofocus required <% } %> placeholder="EDV" name="edv" >
             </div>
             <button type="submit" class="submitButton">Enviar</button>
         </form>
-        <form action="/ToolManager/cadastrarPorEdv" method="post">
+        <!-- <form action="/ToolManager/cadastrarPorEdv" method="post">
             <button type="submit" class="submitButton">EDV</button>
-        </form>
+        </form> -->
         <form action="/ToolManager" method="get">
             <button onclick="ClearDisplay()" class="submitButton" style="background-color: #fb4b4b;">Fechar</button>
         </form>
