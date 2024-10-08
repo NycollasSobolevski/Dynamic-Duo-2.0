@@ -1,4 +1,4 @@
-23848269531074872
+23849997925095762
 Addlibrary
 DIP-16_W7.62mm_Socket_LongPads
 16-lead though-hole mounted DIP package, row spacing 7.62 mm (300 mils), Socket, LongPads
@@ -27,6 +27,13 @@ Through hole socket strip THT 2x10 2.54mm double row
 0
 20
 20
+Addlibrary
+R_Axial_DIN0411_L9.9mm_D3.6mm_P12.70mm_HorizontalLONGPADS
+Resistor, Axial_DIN0411 series, Axial, Horizontal, pin pitch=12.7mm, 1W, length*diameter=9.9*3.6mm^2
+Resistor Axial_DIN0411 series Axial Horizontal pin pitch 12.7mm 1W length 9.9mm diameter 3.6mm
+0
+2
+2
 Addlibrary
 R_Axial_DIN0411_L9.9mm_D3.6mm_P25.40mm_HorizontalLongPads
 Resistor, Axial_DIN0411 series, Axial, Horizontal, pin pitch=25.4mm, 1W, length*diameter=9.9*3.6mm^2
