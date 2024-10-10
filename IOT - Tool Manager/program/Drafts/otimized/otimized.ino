@@ -33,15 +33,20 @@ void printError(int code, const String &msg)
     Firebase.printf("Error, msg: %s, code: %d\n", msg.c_str(), code);
 }
 
-void open(char drawer, int pin)
+void open(int index)
 {
-    String bar = "/";
-    String path = bar + cabinet + bar + drawer;
-    digitalWrite(pin, LOW);
+    digitalWrite(pins[index], LOW);
     delay(5000);
-    bool status = Database.set<bool>(client, path, false);
-    if (status)
-        digitalWrite(pin, HIGH);
+    int status = Database.set<int>(client,cabinet, 0);
+    digitalWrite(pins[index], HIGH);
+}
+
+void getOpened(int* arr, int value) 
+{
+  for (int i = 0; i< 15; i++){
+    int status = (value >> i) & (1);
+    arr[i] = status;
+  }
 }
 
 void setup()
@@ -114,10 +119,21 @@ void loop()
     Serial.print("Status of ");
     Serial.print(cabinet);
     Serial.print(": ");
+    int opened[portsLength];
     int status = Database.get<int>(client, cabinet);
-    if (status)
-        Serial.println(status);
-    else if (client.lastError().code() != 0)
+    getOpened(opened, status);
+    if (status){
+      Serial.println(status);
+    }
+    for(int i = 0; i < portsLength; i++){
+      int crr = opened[i];
+      if(crr > 0){
+        open(i);
+      }
+      Serial.print(" ");
+      Serial.print(opened[i]);
+    }
+    if (client.lastError().code() != 0)
         printError(client.lastError().code(), client.lastError().message());
 
     // if (status)
