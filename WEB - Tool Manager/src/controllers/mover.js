@@ -13,40 +13,32 @@ module.exports = {
         const EDV = req.params.EDV;
         const id = req.params.ferramenta;
 
-        await ferramenta.update({
-            EDV: EDV,
-            STATUS: 'Retirada',
-        },
-        {
-            where: { IDFerramenta: id }
-        });
-
-        const tool = await ferramenta.findAll({
+        const tool = await ferramenta.findOne({
             raw: true,
-            attributes: ['IDGaveta','IDFerramenta','IDArmario']
-        },{
+            attributes: ['IDGaveta','IDFerramenta','IDArmario', 'IDENTIFICACAO'],
             where: { IDFerramenta: id }
         });
-        const armarinho = await armario.findAll({
+        const armarinho = await armario.findOne({
             raw:true,
-            attributes: ['IDArmario', 'IDENTIFICACAO']
-        },
-        {
+            attributes: ['IDArmario', 'IDENTIFICACAO'],
             where: { IDArmario: tool.IDArmario }
         });
-        const gavetinha = await gaveta.findAll({
+        const gavetinha = await gaveta.findOne({
             raw:true,
-            attributes: ['IDGaveta', 'IDENTIFICACAO']
-        },
-        {
+            attributes: ['IDGaveta', 'IDENTIFICACAO'],
             where: { IDGaveta: tool.IDGaveta }
         })
 
-        await Conection.open(armarinho[0].IDENTIFICACAO, gavetinha[0].IDENTIFICACAO);
+        await Conection.open(armarinho.IDENTIFICACAO, gavetinha.IDENTIFICACAO);
 
-        console.log(`ferramenta devolvida (${armarinho[0].IDENTIFICACAO} - ${gavetinha[0].IDENTIFICACAO} - ${tool[0].IDENTIFICACAO})`);
+        console.log(`ferramenta devolvida (${armarinho.IDENTIFICACAO} - ${gavetinha.IDENTIFICACAO} - ${tool.IDENTIFICACAO})`);
 
-        await Conection.open('01','key');
+        await ferramenta.update({
+            EDV: EDV,
+            STATUS: 'Retirada',
+        },{
+            where: { IDFerramenta: id }
+        });
 
         console.log("ferramenta retirada");
 
@@ -59,6 +51,24 @@ module.exports = {
         const EDV = req.params.EDV;
         const id = req.params.ferramenta;
 
+        const tool = await ferramenta.findOne({
+            raw:true,
+            attributes: ['IDENTIFICACAO','IDGaveta', 'IDArmario'],
+            where : { IDFerramenta: id }
+        });
+
+        const armarinho = await armario.findOne({
+            raw:true,
+            attributes: ['IDArmario', 'IDENTIFICACAO'],
+            where: { IDArmario: tool.IDArmario }
+        });
+        const gavetinha = await gaveta.findOne({
+            raw:true,
+            attributes: ['IDGaveta', 'IDENTIFICACAO'],
+            where: { IDGaveta: 16 }
+        })
+
+        await Conection.open(armarinho.IDENTIFICACAO, gavetinha.IDENTIFICACAO);
         await ferramenta.update({
             EDV: '',
             STATUS: '',
@@ -67,37 +77,17 @@ module.exports = {
             where: { IDFerramenta: id }
         });
 
-        const tool = await ferramenta.findAll({
-            raw: true,
-            attributes: ['IDGaveta','IDFerramenta','IDArmario']
-        },{
-            where: { IDFerramenta: id }
-        });
-        const armarinho = await armario.findAll({
-            raw:true,
-            attributes: ['IDArmario', 'IDENTIFICACAO']
-        },
-        {
-            where: { IDArmario: tool.IDArmario }
-        });
-        const gavetinha = await gaveta.findAll({
-            raw:true,
-            attributes: ['IDGaveta', 'IDENTIFICACAO']
-        },
-        {
-            where: { IDGaveta: tool.IDGaveta }
-        })
+        console.log('------------ mover / devolver ---------------');
+        console.log(armarinho);
+        console.log(gavetinha);
+        console.log(tool);
+        console.log('------------ -------------------------------');
 
-        await Conection.open(armarinho[0].IDENTIFICACAO, gavetinha[0].IDENTIFICACAO);
-
-        console.log(`ferramenta devolvida (${armarinho[0].IDENTIFICACAO} - ${gavetinha[0].IDENTIFICACAO} - ${tool[0].IDENTIFICACAO})`);
-
+        console.log(`ferramenta devolvida (${armarinho.IDENTIFICACAO} - ${gavetinha.IDENTIFICACAO} - ${tool.IDENTIFICACAO})`);
 
         setTimeout(function(){
             res.render('../views/index', {retirar:false, devolver:false, cadastrar:false,retirarEdv:false, devolverEdv:false, cadastrarEdv:false, mensage:''});
-        }, 1500);
-
-        
+        }, 1500);        
     },
 
     async exibir(req, res) {

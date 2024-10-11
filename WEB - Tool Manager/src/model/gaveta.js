@@ -13,12 +13,12 @@ const gaveta = database.define('Gavetas', {
     },
 
     IDENTIFICACAO: {
-        type: Sequelize.STRING(3),
+        type: Sequelize.STRING(50),
         allowNull: false
     },
 
     CONTEUDO: {
-        type: Sequelize.STRING(30),
+        type: Sequelize.STRING(100),
         allowNull: true
     },
 
