@@ -22,7 +22,7 @@ const armario = database.define('Armario', {
     },
 
     IDENTIFICACAO: {
-        type: Sequelize.STRING(3),
+        type: Sequelize.STRING(50),
         allowNull: false
     },
 

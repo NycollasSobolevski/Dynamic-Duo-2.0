@@ -1,14 +1,14 @@
---CREATE DATABASE ToolManager
+CREATE DATABASE ToolManager
 
---USE ToolManager
+USE ToolManager
 
-DROP TABLE Ferramentas
-DROP TABLE Subtipos
-DROP TABLE Tipos_de_ferramentas
-DROP TABLE Compartimentos
-DROP TABLE Gavetas
-DROP TABLE Armarios
-DROP TABLE Colaboradores
+-- DROP TABLE Ferramentas
+-- DROP TABLE Subtipos
+-- DROP TABLE Tipos_de_ferramentas
+-- DROP TABLE Compartimentos
+-- DROP TABLE Gavetas
+-- DROP TABLE Armarios
+-- DROP TABLE Colaboradores
 
 CREATE TABLE Armarios(
     ID INT IDENTITY(1,1) PRIMARY KEY,

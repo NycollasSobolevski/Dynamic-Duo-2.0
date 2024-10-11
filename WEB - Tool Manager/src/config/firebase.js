@@ -7,16 +7,30 @@ const Conection = {};
 Conection.open = async ( cabinet, drawer ) => {
     (async () => {
 
-        const proxy = 'http://disrct:etsps2024401@10.224.200.26:8080'; 
+        const proxy = 'http://disrct:area404etstech@10.224.200.26:8080'; 
     
         // Crie um agente de proxy
         const agent = new HttpsProxyAgent(proxy);
+
+        drawer = drawer.toLowerCase();
+        let postData = "0"; 
         
-        const postData = `true`; 
-        
+        for(let i = 'a'.charCodeAt(0); i <= 'o'.charCodeAt(0); i++){
+            if(String.fromCharCode(i) == drawer){
+                const index = i - 97;
+                postData = (2 ** index).toString();
+                console.log(`----------------------------`);
+                console.log(`i: ${String.fromCharCode(i)}`);
+                console.log(`Drawer: ${drawer}`);
+                console.log(`Index: ${index}`);
+                console.log(`PostData: ${postData}`);
+                console.log(`----------------------------`);
+            }
+        }
+
         const req = https.request({
                 hostname:'toolmanager-b1304-default-rtdb.firebaseio.com',
-                path:`/${cabinet}/${drawer}.json`,
+                path:`/${cabinet}.json`,
                 agent:agent,
                 method: 'PUT',
                 headers: {
@@ -32,7 +46,7 @@ Conection.open = async ( cabinet, drawer ) => {
             })  ;
     
             res.on('end', () => {
-                console.log(JSON.parse(data));
+                console.log(data);
             })  ;
         });
     
