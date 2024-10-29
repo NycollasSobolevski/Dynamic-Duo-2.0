@@ -47,7 +47,7 @@
           Devolver
       </h2>
       <h4>
-          <%= pessoa[0].IDENTIFICACAO %>
+          <%= pessoa.IDENTIFICACAO %>
       </h4>
   </div>
 
@@ -71,7 +71,7 @@
 
         <% for (let i=0; i<ferramentas.length; i++) { %>
           <tr>
-            <form action="/ToolManager/confirmadevolucao/<%= pessoa[0].EDV %>/<%= ferramentas[i].IDFerramenta %>" method="get">
+            <form action="/ToolManager/confirmadevolucao/<%= pessoa.EDV %>/<%= ferramentas[i].IDFerramenta %>" method="get">
               <td><strong><%= ferramentas[i].IDENTIFICACAO %></strong></td>
               <td><%= ferramentas[i].DESCRICAO %></td>
               <td><%= ferramentas[i].STATUS %></td>

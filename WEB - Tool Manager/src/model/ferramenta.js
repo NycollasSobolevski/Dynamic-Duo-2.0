@@ -1,6 +1,7 @@
 // Importação
 const Sequelize = require('sequelize');
 const database = require('../config/db');
+
 const armario = require('./armario');
 const gaveta = require('./gaveta');
 const compartimento = require('./compartimento');
@@ -14,6 +15,11 @@ const ferramenta = database.define('Ferramentas', {
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
+    },
+
+    QUANTIDADE: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
 
     IDENTIFICACAO: {

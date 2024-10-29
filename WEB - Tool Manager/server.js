@@ -20,4 +20,4 @@ app.use(routes);
 const PORT = 3001;
 const HOST = 'localhost'
 
-app.listen(PORT, HOST, () => console.log(`Acesse: http://${HOST}:${PORT}/`));
+app.listen(PORT, HOST, () => console.log(`Acesse: http://${HOST}:${PORT}/ToolManager`));

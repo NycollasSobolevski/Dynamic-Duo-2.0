@@ -5,6 +5,7 @@ const compartimento = require('../model/compartimento');
 const tipo = require('../model/tipo');
 const subtipo = require('../model/subtipo');
 const colaborador = require('../model/colaborador');
+const emprestimo = require('../model/emprestimo');
 
 module.exports = {
     async pagDevolverGet(req, res) {
@@ -18,13 +19,13 @@ module.exports = {
 
         PorCartao: {
             if (cartao != '') {
-                const pessoa = await colaborador.findAll({
+                const pessoa = await colaborador.findOne({
                     raw: true,
                     attributes: ['EDV', 'IDENTIFICACAO', 'CARTAO', 'ADMIN'],
                     where: { CARTAO: cartao },
                 });
                 console.log(pessoa);
-                if (pessoa[0] == undefined) {
+                if (pessoa == undefined) {
                     res.render('../views/index', {
                         retirar: false, devolver: false, cadastrar: false,
                         retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: 'Pessoa nao cadastrada'
@@ -32,11 +33,19 @@ module.exports = {
                     console.log('passou');
                     break PorCartao;
                 }
+                const emprestimos = await emprestimo.findAll({
+                    raw: true,
+                    attributes: ['emprestadoAs','devolvidoAs', 'EDV', 'IDFerramenta'],
+                    where: { EDV: pessoa.EDV, devolvidoAs: null},
+                })
+
                 const ferramentas = await ferramenta.findAll({
                     raw: true,
                     attributes: ['IDFerramenta', 'IDENTIFICACAO', 'DESCRICAO', 'STATUS', 'IDTipo', 'IDSubtipo', 'IDArmario', 'IDGaveta', 'IDCompartimento'],
-                    where: { EDV: pessoa[0].EDV },
+                    where: { IDFerramenta: [...new Set(emprestimos.map(e => e.IDFerramenta))] },
                 });
+                console.log(ferramentas);
+                
 
                 for (let i = 0; i < ferramentas.length; i++) {
                     var temp = await tipo.findAll({

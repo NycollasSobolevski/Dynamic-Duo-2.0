@@ -69,8 +69,8 @@ module.exports = {
         const armarioSelected = dados.armario;
         const gavetaSelected = dados.gaveta;
         const compartimentoSelected = dados.compartimento;
-        const condicao = dados.send
-
+        const condicao = dados.send;
+        const quantidade = dados.quantidade;
         let cartaozinho = cartao;
 
         if ((armarioSelected==undefined || gavetaSelected==undefined || compartimentoSelected==undefined) || !condicao) {
@@ -90,7 +90,8 @@ module.exports = {
                     IDCompartimento: dados.compartimento,
                     IDGaveta: dados.gaveta,
                     IDArmario: dados.armario,
-                    STATUS: dados.status
+                    STATUS: dados.status,
+                    QUANTIDADE: quantidade
                 });
             }
             else{
@@ -102,7 +103,8 @@ module.exports = {
                     IDCompartimento: dados.compartimento,
                     IDGaveta: dados.gaveta,
                     IDArmario: dados.armario,
-                    STATUS: dados.status
+                    STATUS: dados.status,
+                    QUANTIDADE: quantidade
                 });
             }
     
