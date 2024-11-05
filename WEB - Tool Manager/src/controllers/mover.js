@@ -6,6 +6,7 @@ const compartimento = require('../model/compartimento');
 const tipo = require('../model/tipo');
 const subtipo = require('../model/subtipo');
 const colaborador = require('../model/colaborador');
+const emprestimo = require('../model/emprestimo')
 
 const Conection = require('../config/firebase');
 module.exports = {
@@ -15,7 +16,7 @@ module.exports = {
 
         const tool = await ferramenta.findOne({
             raw: true,
-            attributes: ['IDGaveta','IDFerramenta','IDArmario', 'IDENTIFICACAO'],
+            attributes: ['IDGaveta','IDFerramenta','IDArmario', 'IDENTIFICACAO', 'QUANTIDADE'],
             where: { IDFerramenta: id }
         });
         const armarinho = await armario.findOne({
@@ -29,18 +30,32 @@ module.exports = {
             where: { IDGaveta: tool.IDGaveta }
         })
 
-        await Conection.open(armarinho.IDENTIFICACAO, gavetinha.IDENTIFICACAO);
+        console.log(tool);
 
-        console.log(`ferramenta devolvida (${armarinho.IDENTIFICACAO} - ${gavetinha.IDENTIFICACAO} - ${tool.IDENTIFICACAO})`);
-
-        await ferramenta.update({
-            EDV: EDV,
-            STATUS: 'Retirada',
-        },{
-            where: { IDFerramenta: id }
+        const emprestimos = await emprestimo.findAll({
+            raw:true,
+            attributes: ['IDFerramenta', 'devolvidoAs'],
+            where: { IDFerramenta: tool.IDFerramenta, devolvidoAs: null }
         });
 
-        console.log("ferramenta retirada");
+        if(emprestimos.length >= tool.QUANTIDADE) {
+            res.render('../views/index', {
+                retirar: false, devolver: false, cadastrar: false,
+                retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: `Não há ${tool.IDENTIFICACAO} disponível (${emprestimos.length} / ${tool.QUANTIDADE})`
+            });
+            return;
+        }
+
+        await Conection.open(armarinho.IDENTIFICACAO, gavetinha.IDENTIFICACAO);
+
+        await emprestimo.create({
+            EDV: EDV,
+            emprestadoAs: new Date(),
+            devolvidoAs: null,
+            IDFerramenta: tool.IDFerramenta
+        })       
+        
+        console.log(`ferramenta Retirada (${armarinho.IDENTIFICACAO} - ${gavetinha.IDENTIFICACAO} - ${tool.IDENTIFICACAO})`);
 
         setTimeout(function(){
             res.render('../views/index', {retirar:false, devolver:false, cadastrar:false,retirarEdv:false, devolverEdv:false, cadastrarEdv:false, mensage:''});
@@ -65,23 +80,38 @@ module.exports = {
         const gavetinha = await gaveta.findOne({
             raw:true,
             attributes: ['IDGaveta', 'IDENTIFICACAO'],
-            where: { IDGaveta: 16 }
+            where: { IDGaveta: tool.IDGaveta }
         })
 
-        await Conection.open(armarinho.IDENTIFICACAO, gavetinha.IDENTIFICACAO);
-        await ferramenta.update({
-            EDV: '',
-            STATUS: '',
-        },
-        {
-            where: { IDFerramenta: id }
-        });
-
         console.log('------------ mover / devolver ---------------');
+        console.log(EDV);
         console.log(armarinho);
         console.log(gavetinha);
         console.log(tool);
         console.log('------------ -------------------------------');
+
+
+
+        await Conection.open(armarinho.IDENTIFICACAO, gavetinha.IDENTIFICACAO);
+        // await ferramenta.update({
+        //     EDV: '',
+        //     STATUS: '',
+        // },
+        // {
+        //     where: { IDFerramenta: id }
+        // });
+        
+        const sla = await emprestimo.findOne({
+            raw: true,
+            attributes: ['ID','devolvidoAs','EDV', 'IDFerramenta'],
+            where: {EDV: EDV, devolvidoAs: null}
+        })
+        await emprestimo.update({
+            devolvidoAs: new Date()
+        }, { where: { ID: sla.ID }})
+
+        console.log(sla);
+        
 
         console.log(`ferramenta devolvida (${armarinho.IDENTIFICACAO} - ${gavetinha.IDENTIFICACAO} - ${tool.IDENTIFICACAO})`);
 

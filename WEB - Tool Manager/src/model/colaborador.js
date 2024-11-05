@@ -8,7 +8,6 @@ const colaborador = database.define('Colaboradores', {
         allowNull: false,
         primaryKey: true
     },
-
     IDENTIFICACAO: {
         type: Sequelize.STRING(125),
         allowNull: false

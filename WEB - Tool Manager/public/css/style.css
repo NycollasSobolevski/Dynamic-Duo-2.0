@@ -39,11 +39,11 @@ main{
     display: flex;
 }
 .Card:disabled{
-    filter: none;
+    filter: grayscale(.9);
     cursor: not-allowed;
 }
 .Card:disabled:hover{
-    filter: none;
+    filter: grayscale(.9);
     cursor: not-allowed;
 }
 .btn

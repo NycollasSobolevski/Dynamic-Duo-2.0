@@ -59,7 +59,7 @@
                                     item == 'Compartimentos' ? '/ToolManager/pa-ferramentas/'+EDV+'/'+SelectItem[i].IDCompartimento : 
                                     item == 'Ferramentas' ? '/ToolManager/confirmaretirada/'+EDV+'/'+SelectItem[i].IDFerramenta : '' %> "
                             method="get">
-                            <button class="Card" <%= item=='Ferramentas'&&SelectItem[i].EDV!=''? 'disabled' : '' %> 
+                            <button class="Card" <%= item=='Ferramentas' && (SelectItem[i].QUANTIDADE == SelectItem[i].UTILIZADAS ? 'disabled' : '') %> 
                                  onclick="this.form.submit()" >
                                 <div class="Content">
                                     <div class="img" <% if(item=='Ferramentas'&&SelectItem[i].EDV!='') {%> style="background-color: #d2d5d5" <% } %> >
@@ -80,11 +80,7 @@
                                         </h4>
                                         </p>
                                         <% if (item=='Ferramentas') { %>
-                                            <% for( let j = 0; j < colaboradores.length; j++ ) { %>
-                                            <% if (colaboradores[j].EDV == SelectItem[i].EDV) { %>
-                                                <p>Retirada por:</p> <p></p><%= colaboradores[j].IDENTIFICACAO %> </p>
-                                            <% } %>
-                                         <% } %>
+                                            <p>(utilizadas <%= SelectItem[i].UTILIZADAS %>/<%= SelectItem[i].QUANTIDADE %>)</p>
                                         <% } %>
                                         <img src="" alt="">
                                     </div>
