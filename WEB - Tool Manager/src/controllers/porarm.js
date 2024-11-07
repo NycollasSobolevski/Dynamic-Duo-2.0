@@ -56,7 +56,7 @@ module.exports = {
         const id = req.params.gaveta;
         const SelectItem = await compartimento.findAll({
                 raw: true,
-                attributes: ['IDCompartimento', 'IDENTIFICACAO'],
+                attributes: ['IDCompartimento', 'IDENTIFICACAO', 'CONTEUDO'],
                 where: { IDGaveta: id }
             });
         const item = "Compartimentos"

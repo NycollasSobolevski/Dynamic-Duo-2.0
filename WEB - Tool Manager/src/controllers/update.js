@@ -97,7 +97,6 @@ module.exports = {
             res.render('../views/index', { retirar: false, devolver: false, cadastrar: false, retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: '' });
         }
     },
-
     async armario(req, res) {
         const id = req.params.id
         const dados = req.body
@@ -113,7 +112,6 @@ module.exports = {
 
         res.render('../views/index', { retirar: false, devolver: false, cadastrar: false, retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: '' });
     },
-
     async gaveta(req, res) {
         const id = req.params.id
         const dados = req.body
@@ -130,13 +128,13 @@ module.exports = {
 
         res.render('../views/index', { retirar: false, devolver: false, cadastrar: false, retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: '' });
     },
-
     async compartimento(req, res) {
         const id = req.params.id
         const dados = req.body
 
         await compartimento.update({
             IDENTIFICACAO: dados.identificacao,
+            CONTEUDO: dados.conteudo
         },
             {
                 where: { IDCompartimento: id }
@@ -144,7 +142,6 @@ module.exports = {
 
         res.render('../views/index', { retirar: false, devolver: false, cadastrar: false, retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: '' });
     },
-
     async tipo(req, res) {
         const id = req.params.id
         const dados = req.body
@@ -158,7 +155,6 @@ module.exports = {
 
         res.render('../views/index', { retirar: false, devolver: false, cadastrar: false, retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: '' });
     },
-
     async subtipo(req, res) {
         const id = req.params.id
         const dados = req.body
@@ -172,7 +168,6 @@ module.exports = {
 
         res.render('../views/index', { retirar: false, devolver: false, cadastrar: false, retirarEdv: false, devolverEdv: false, cadastrarEdv: false, mensage: '' });
     },
-
     async excluir(req, res) {
         const id = req.params.id;
         const item = req.params.item;
