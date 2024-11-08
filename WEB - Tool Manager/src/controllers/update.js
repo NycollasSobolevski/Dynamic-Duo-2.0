@@ -80,17 +80,23 @@ module.exports = {
             });
         }
         else{
-
-            await ferramenta.update({
+            console.log("---------------------------------------------------");
+            console.log(dados.subtipo);
+            
+            var obj = {
                 IDENTIFICACAO: dados.identificacao,
                 STATUS: dados.status,
                 DESCRICAO: dados.descricao,
                 IDTipo: dados.tipo,
-                IDSubtipo: dados.subtipo,
+                IDSubtipo: null,
                 IDArmario: dados.armario,
                 IDGaveta: dados.gaveta,
                 IDCompartimento: dados.compartimento,
-            },
+            }
+            if(dados.subtipo) 
+                obj.IDSubtipo = dados.subtipo
+            
+            await ferramenta.update(obj,
                 {
                     where: { IDFerramenta: id }
                 });
