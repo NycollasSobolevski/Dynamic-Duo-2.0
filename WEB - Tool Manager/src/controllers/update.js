@@ -489,7 +489,7 @@ module.exports = {
 
         const ferramentas = await ferramenta.findAll({
             raw: true,
-            attributes: ['IDFerramenta', 'IDENTIFICACAO', 'DESCRICAO', 'STATUS', 'EDV']
+            attributes: ['IDFerramenta', 'IDENTIFICACAO', 'DESCRICAO', 'STATUS', 'EDV', 'QUANTIDADE']
         });
         const tipos = await tipo.findAll({
             raw: true,
@@ -526,7 +526,7 @@ module.exports = {
         });
         const EditItem = await ferramenta.findAll({
             raw: true,
-            attributes: ['IDFerramenta', 'IDENTIFICACAO', 'DESCRICAO', 'STATUS', 'EDV', 'IDTipo', 'IDSubtipo', 'IDCompartimento', 'IDGaveta', 'IDArmario'],
+            attributes: ['IDFerramenta', 'IDENTIFICACAO', 'DESCRICAO', 'STATUS', 'EDV', 'IDTipo', 'IDSubtipo', 'IDCompartimento', 'IDGaveta', 'IDArmario', 'QUANTIDADE'],
             where: { IDFerramenta: id }
         });
         console.log(pessoa);
