@@ -3,6 +3,8 @@ const routes = require('./routes');
 
 const app = express();
 
+const args = process.argv.slice(2)
+
 app.use(express.urlencoded({ extended: true }));
 
 // Static files
@@ -15,9 +17,8 @@ app.set('view engine', 'ejs');
 
 app.use(routes);
 
-// const PORT = 20031;
-// const HOST = '10.234.192.30'
-const PORT = 3001;
-const HOST = 'localhost'
+
+const PORT = args[1] || 3001;
+const HOST = args[0] || 'localhost';
 
 app.listen(PORT, HOST, () => console.log(`Acesse: http://${HOST}:${PORT}/ToolManager`));

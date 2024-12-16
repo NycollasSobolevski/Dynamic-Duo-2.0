@@ -7,7 +7,7 @@ const Conection = {};
 Conection.open = async ( cabinet, drawer ) => {
     (async () => {
 
-        const proxy = 'http://disrct:area404etstech@10.224.200.26:8080'; 
+        const proxy = 'http://disrct:etsbosch2024@10.224.200.26:8080'; 
     
         // Crie um agente de proxy
         const agent = new HttpsProxyAgent(proxy);
